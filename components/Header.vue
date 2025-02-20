@@ -1,30 +1,39 @@
 <script setup lang="ts">
-const imageSearch = ref<string>('');
+import { storeToRefs } from 'pinia';
+import { useSearchImageStore } from '~/stores/main.store';
+
+const store = useSearchImageStore();
+const { searchImage } = storeToRefs(store);
+const isLoading = ref(false);
 </script>
 <template>
   <header class="header-wrapper">
     <div class="header-wrapper-container">
       <div class="header-wrapper-container--search">
         <UInput
-          v-model="imageSearch"
+          v-model="searchImage"
           name="imageSearch"
           class="w-3/4"
+          :search="customSearchImage"
+          :loading="isLoading"
           icon="i-heroicons-magnifying-glass-20-solid"
           placeholder="Search for photo"
           :autofocus="false"
           autocomplete="off"
           color="white"
           size="lg"
+          option-attribute="name"
+          trailing
           :ui="{ icon: { trailing: { pointer: '' } } }"
         >
           <template #trailing>
             <UButton
-              v-show="imageSearch !== ''"
+              v-show="searchImage !== ''"
               color="gray"
               variant="link"
               icon="i-heroicons-x-mark-20-solid"
               :padded="false"
-              @click="imageSearch = ''"
+              @click="searchImage = ''"
             />
           </template>
         </UInput>
