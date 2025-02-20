@@ -9,8 +9,6 @@ const { data: unsplashImages, status } = await useLazyFetch('/api/unsplash.api',
 const { unsplashProfile, isConnecting } = storeToRefs(store);
 unsplashProfile.value = unsplashImages.value;
 isConnecting.value = status.value === 'pending' ? true : false;
-console.log(toRaw(unsplashProfile));
-localStorage.setItem('defaultImage', unsplashProfile);
 </script>
 <template>
   <div class="imagegallery-wrapper">
