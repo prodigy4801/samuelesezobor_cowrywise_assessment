@@ -3,6 +3,7 @@ import ImageGallery from './components/ImageGallery.vue';
 </script>
 
 <template>
+  <NuxtLoadingIndicator />
   <main>
     <Header />
     <ImageGallery />
