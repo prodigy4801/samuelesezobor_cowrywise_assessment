@@ -1,12 +1,20 @@
 <script setup>
-const { data: unsplashImage, status } = await useLazyFetch('/api/unsplash.api', {
-  transform: (_unsplashImage) => _unsplashImage.data,
+import { storeToRefs } from 'pinia';
+import { useSearchImageStore } from '~/stores/main.store';
+
+const store = useSearchImageStore();
+const { data: unsplashImages, status } = await useLazyFetch('/api/unsplash.api', {
+  transform: (_unsplashImages) => _unsplashImages.data,
 });
-console.log(toRaw(unsplashImage));
+const { unsplashProfile, isConnecting } = storeToRefs(store);
+unsplashProfile.value = unsplashImages.value;
+isConnecting.value = status.value === 'pending' ? true : false;
+console.log(toRaw(unsplashProfile));
+localStorage.setItem('defaultImage', unsplashProfile);
 </script>
 <template>
   <div class="imagegallery-wrapper">
-    <div v-if="status === 'pending'" class="imagegallery-wrapper--grid">
+    <div v-if="isConnecting" class="imagegallery-wrapper--grid">
       <div v-for="index in 6" :key="index">
         <div class="relative h-[14rem] w-[250px] bg-gray-200">
           <div class="absolute bottom-8 left-4 flex flex-col gap-2">
@@ -16,8 +24,8 @@ console.log(toRaw(unsplashImage));
         </div>
       </div>
     </div>
-    <div v-else-if="unsplashImage != null" class="imagegallery-wrapper--grid">
-      <div v-for="(image, index) in unsplashImage" :key="index">
+    <div v-else-if="unsplashProfile != null" class="imagegallery-wrapper--grid">
+      <div v-for="(image, index) in unsplashProfile" :key="index">
         <div class="relative">
           <NuxtImg class="w-full rounded-none" :src="image.urls.full" />
           <div class="absolute bottom-8 left-4 flex flex-col gap-0">

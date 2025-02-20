@@ -24,4 +24,10 @@ export default defineNuxtConfig({
       Lato: [100, 300],
     },
   },
+  runtimeConfig: {
+    public: {
+      unsplashUrl: process.env.UNSPLASH_BASE_URL,
+      unsplashKey: process.env.UNSPLASH_APIKEY,
+    },
+  },
 });

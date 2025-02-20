@@ -5,6 +5,18 @@ import { useSearchImageStore } from '~/stores/main.store';
 const store = useSearchImageStore();
 const { searchImage } = storeToRefs(store);
 const isLoading = ref(false);
+
+async function searchMyImage() {
+  isLoading.value = true;
+  await store.getUnsplashImages();
+  isLoading.value = false;
+}
+async function revertToDefault() {
+  searchImage.value = '';
+  isLoading.value = true;
+  await store.getUnsplashImages();
+  isLoading.value = false;
+}
 </script>
 <template>
   <header class="header-wrapper">
@@ -14,17 +26,13 @@ const isLoading = ref(false);
           v-model="searchImage"
           name="imageSearch"
           class="w-3/4"
-          :search="customSearchImage"
           :loading="isLoading"
           icon="i-heroicons-magnifying-glass-20-solid"
           placeholder="Search for photo"
-          :autofocus="false"
-          autocomplete="off"
           color="white"
           size="lg"
-          option-attribute="name"
-          trailing
           :ui="{ icon: { trailing: { pointer: '' } } }"
+          @keypress.enter="searchMyImage"
         >
           <template #trailing>
             <UButton
@@ -33,7 +41,7 @@ const isLoading = ref(false);
               variant="link"
               icon="i-heroicons-x-mark-20-solid"
               :padded="false"
-              @click="searchImage = ''"
+              @click="revertToDefault"
             />
           </template>
         </UInput>

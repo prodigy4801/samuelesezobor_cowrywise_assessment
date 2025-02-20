@@ -1,6 +1,6 @@
-export default defineEventHandler(async () => {
+export default defineEventHandler(async (searchImage) => {
   const imageResponse = await $fetch(
-    `${process.env.UNSPLASH_BASE_URL}/photos?client_id=${process.env.UNSPLASH_APIKEY}`
+    `${process.env.UNSPLASH_BASE_URL}/photos?query=${searchImage}&client_id=${process.env.UNSPLASH_APIKEY}`
   );
   return {
     data: imageResponse,
