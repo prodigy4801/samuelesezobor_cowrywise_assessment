@@ -35,7 +35,7 @@ const imageSearch = ref<string>('');
 
 <style scoped>
 .header-wrapper {
-  @apply w-full h-24 bg-slate-300;
+  @apply w-full h-24 bg-slate-300 fixed top-0 left-0 rounded-none border border-white;
   &-container {
     @apply container max-w-[1420px];
     &--search {
