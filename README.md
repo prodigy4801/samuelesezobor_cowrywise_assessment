@@ -1,75 +1,14 @@
-# Nuxt UI Minimal Starter
+# Cowrywise Assessment Image Portal
 
-Look at [Nuxt docs](https://nuxt.com/docs/getting-started/introduction) and [Nuxt UI docs](https://ui.nuxt.com) to learn more.
+An assessment by Cowrywise to mimic the Unsplash API Portal
 
-## Setup
+This boiler template is Vue 3, Nuxt JS 3, TypeScript, and Tailwind CSS using SCSS. The template uses npx nuxi@latest init samuelesezobor_cowrywise_assessment.
 
-Make sure to install the dependencies:
-
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Installation Guide line
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+1. Clone the main repository with the following command: git clone https://github.com/prodigy4801/samuelesezobor_cowrywise_assessment.git
+2. Change your directory to the cloned application directory
+3. Then to run the application use: npm run dev
+4. Checkout for the localhost Url with its assigned Port number, then hold down CTRL and click the URL link.
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
